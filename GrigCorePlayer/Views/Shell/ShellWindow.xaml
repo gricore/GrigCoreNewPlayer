@@ -1,0 +1,29 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:regions="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism"
+        xmlns:Home="clr-namespace:GrigCorePlayer.Views.Home" x:Class="GrigCorePlayer.Views.Shell.ShellWindow"
+        Title="Free Player from Grig" Height="450" Width="650" Loaded="ShellViewLoaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0" regions:RegionManager.RegionName="MenuContent"/>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <Frame NavigationUIVisibility="Hidden" Background="WhiteSmoke" regions:RegionManager.RegionName="NavigationContent"/>
+            </ScrollViewer>
+            <ContentControl Width="100"  regions:RegionManager.RegionName="LeftPanelContent"/>
+            <ContentControl Width="100"  regions:RegionManager.RegionName="PlayerContent" Visibility="Visible"/>
+        </Grid>
+    </Grid>
+
+</Window>

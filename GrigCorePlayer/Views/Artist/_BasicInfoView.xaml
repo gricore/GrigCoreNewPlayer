@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="GrigCorePlayer.Views.Artist._BasicInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controllers="clr-namespace:GrigCorePlayer.Controllers"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=controllers:ArtistController}"
+             d:DesignHeight="300" d:DesignWidth="500" Margin="5, 5, 0, 5">
+    <Grid>
+        <StackPanel>
+            <TextBlock Margin="10" FontSize="15" FontWeight="SemiBold"
+                       Foreground="DimGray"
+                       Text="{Binding Path=Model.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                       HorizontalAlignment="Center"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Border BorderThickness="2, 1, 0, 2" BorderBrush="LightGray" Height="160" Width="150" Padding="3" Margin="20"
+                        Grid.Column="1" Background="White">
+                    <Image Stretch="UniformToFill"
+                        Source="{Binding Path=Model.PictureUrl, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Border>
+
+                <TextBlock FontSize="12" Foreground="DimGray"
+                    Text="{Binding Path=Model.ArtistBio, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Column="0" HorizontalAlignment="Center" TextWrapping="Wrap" FontStyle="Italic"/>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

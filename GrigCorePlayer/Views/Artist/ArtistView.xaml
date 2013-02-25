@@ -1,0 +1,19 @@
+﻿<Page x:Class="GrigCorePlayer.Views.Artist.ArtistView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:controllers="clr-namespace:GrigCorePlayer.Controllers"
+      mc:Ignorable="d" 
+      d:DataContext="{d:DesignInstance Type=controllers:ArtistController}"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="ArtistView">
+
+    <StackPanel Orientation="Vertical">
+        <ContentControl Content="{Binding Path=FrameworkModel.ArtistBasicInfoContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ContentControl Margin="0, 3, 0, 3" Content="{Binding Path=FrameworkModel.TagsContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ContentControl Content="{Binding Path=FrameworkModel.SimilarContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ContentControl Content="{Binding Path=FrameworkModel.ArtistAlbumsContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ContentControl Content="{Binding Path=FrameworkModel.TracksContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </StackPanel>
+</Page>

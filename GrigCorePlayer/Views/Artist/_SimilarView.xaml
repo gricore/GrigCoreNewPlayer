@@ -1,0 +1,20 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"             
+             xmlns:controllers="clr-namespace:GrigCorePlayer.Controllers"
+             xmlns:newFolder1="clr-namespace:GrigCorePlayer.Controls.CustomListBox"
+             x:Class="GrigCorePlayer.Views.Artist._SimilarView" 
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=controllers:ArtistController}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Right" Foreground="LightSkyBlue"
+                   FontWeight="SemiBold" Text="Similar Artists" Margin="5"/>
+        <newFolder1:TilesListBox
+            x:Name="SimilarListBox"
+            ItemsSources="{Binding Path=Model.Similar, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+    </StackPanel>
+</UserControl>

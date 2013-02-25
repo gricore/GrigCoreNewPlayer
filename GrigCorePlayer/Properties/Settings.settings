@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrigCorePlayer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="api_key" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">8009def8812a46365f28bd1ca0aaeb6a</Value>
+    </Setting>
+    <Setting Name="api_sec" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">d9db880e592a46591434e819c0b64566</Value>
+    </Setting>
+    <Setting Name="vk_id" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2811182</Value>
+    </Setting>
+    <Setting Name="vk_access_token" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ac0e300ad51e76720a689db7116a0d8ed893196b27d064176037b3cddf23ea8b94f19276f3674336b02a9</Value>
+    </Setting>
+    <Setting Name="vk_userid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">46180393</Value>
+    </Setting>
+    <Setting Name="lfm_token" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="lfm_apisig" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="lfm_sessionKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="lfm_username" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

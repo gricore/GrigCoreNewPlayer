@@ -1,0 +1,156 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:controllers="clr-namespace:GrigCorePlayer.Controllers"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="GrigCorePlayer.Views.NowPlaying.NowPlayingView"
+      mc:Ignorable="d" Background="WhiteSmoke"
+      d:DataContext="{d:DesignInstance Type={x:Type controllers:NowPlayingController}}"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="NowPlayingView">
+
+    <Page.Resources>
+        <Style TargetType="{x:Type Border}" x:Key="bBorder">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="WhiteSmoke"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="bTextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Gray"/>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid>
+        <StackPanel>
+            <Grid Height="10"/>
+            <StackPanel Opacity="0.8" x:Name="SStackPanel" Orientation="Horizontal" Height="42" 
+                        Background="DimGray">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border CornerRadius="10" Margin="5" Grid.Column="0" Padding="10, 5, 10, 5" Height="28" Background="WhiteSmoke">
+                        <telerik:RadSlider Cursor="Hand" Width="80" x:Name="VolumeSlider"
+                    telerik:StyleManager.Theme="Expression_Dark"
+        			Maximum="25" Minimum="0">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="ValueChanged">
+                                    <i:InvokeCommandAction CommandParameter="{Binding Value, ElementName=VolumeSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        						Command="{Binding ValueChangedCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </telerik:RadSlider>
+                    </Border>
+
+
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Border Style="{StaticResource bBorder}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction  Command="{Binding PlayForwardCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Style="{StaticResource bTextBlock}" Text="FW"/>
+
+                        </Border>
+
+                        <Border Style="{StaticResource bBorder}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction  Command="{Binding StopCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Style="{StaticResource bTextBlock}" Text="ST"/>
+
+                        </Border>
+
+                        <Border Style="{StaticResource bBorder}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction  Command="{Binding PauseCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Style="{StaticResource bTextBlock}" Text="PS"/>
+
+                        </Border>
+
+                        <Border Style="{StaticResource bBorder}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction  Command="{Binding PlayCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Style="{StaticResource bTextBlock}" Text="PL"/>
+
+                        </Border>
+                    </StackPanel>
+
+
+                </Grid>
+
+
+
+
+
+                <!--<Button VerticalAlignment="Top" Margin="10" Height="20" Width="30" Content="FW">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction  Command="{Binding PlayForwardCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button VerticalAlignment="Top" Margin="0, 10, 10, 10" Height="20" Width="30" Content="ST" Command="{Binding Path=StopCommand}"/>
+                <Button VerticalAlignment="Top" Margin="0, 10, 10, 10" Height="20" Width="30" Content="PS" Command="{Binding Path=PauseCommand}"/>
+                <Button VerticalAlignment="Top" Margin="0, 10, 10, 10" Height="20" Width="30" Content="PL" Command="{Binding Path=PlayCommand}"/>-->
+            </StackPanel>
+            <Border MouseLeftButtonUp="ChangePosition_OnMouseUp" Cursor="Hand"
+                BorderThickness="0, 1, 0, 1" BorderBrush="DeepSkyBlue" Margin="0, 10, 0, 0" Height="20" Background="White">
+                <Grid x:Name="DGrid"                                    
+                   Background="White">
+                    <Border x:Name="DBorder" BorderThickness="0, 0, 1, 0" BorderBrush="DeepSkyBlue" HorizontalAlignment="Left" 
+                            Background="DeepSkyBlue"/>
+                    <TextBlock
+                    Margin="10, 0, 0, 0"
+                    Text="{Binding Model.Track, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                     Opacity="0.8"
+                           FontSize="10" FontStyle="Italic" FontWeight="SemiBold" Foreground="Black"/>
+
+                </Grid>
+            </Border>
+
+            <Grid>
+                <Grid Visibility="Hidden" Background="{x:Null}" Height="100" Width="100" HorizontalAlignment="Left" Margin="0, 10, 0, 0">
+                    <Border Height="100" Width="100" Background="White" BorderThickness="1" BorderBrush="LightGray" Padding="0 2, 2, 2">
+                        <Image Source="{Binding Model.ClipArtUrl, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                               Stretch="UniformToFill"/>
+                    </Border>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

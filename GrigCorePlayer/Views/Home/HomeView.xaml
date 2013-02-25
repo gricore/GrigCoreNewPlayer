@@ -1,0 +1,50 @@
+﻿<Page x:Class="GrigCorePlayer.Views.Home.HomeView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:controllers="clr-namespace:GrigCorePlayer.Controllers"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      mc:Ignorable="d" Background="WhiteSmoke"
+      d:DataContext="{d:DesignInstance Type=controllers:HomeController}"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="HomeView">
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Grid Height="30" Background="DimGray" Opacity="0.8"  Margin="0, 12, 0, 5">
+                <TextBlock FontSize="17" FontWeight="SemiBold"
+                    Foreground="FloralWhite" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Text="Welcome"/>
+            </Grid>
+            <Border BorderThickness="1" BorderBrush="LightGray" CornerRadius="8" Margin="35, 10, 35, 10" Height="30" Background="GhostWhite">
+                <TextBox Name="SearchBoxTextBox" GotFocus="SearchBoxGotFocus" LostFocus="SearchBoxLostFocus"
+                    FontSize="12" VerticalAlignment="Center" Margin="10, 0, 0, 0" Foreground="DimGray"
+                         Text="{Binding Mode=TwoWay, Path=Model.SearchBoxText, UpdateSourceTrigger=PropertyChanged}"
+                         Background="{x:Null}" BorderThickness="0" FontStyle="Italic">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="KeyDown">
+                            <i:InvokeCommandAction CommandParameter="{Binding ElementName=SearchBoxTextBox, Path=Text, Mode=TwoWay}"
+                                           Command="{Binding SearchBoxKeyDownCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </Border>
+
+            <!-- Search By -->
+            <TextBlock Text="Search by" HorizontalAlignment="Center" Foreground="DimGray"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton Foreground="DimGray" Margin="10, 5, 10, 0" Content="Artist" IsChecked="{Binding Model.ArtistChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <RadioButton Foreground="DimGray" Margin="10, 5, 10, 0" Content="Tag" IsChecked="{Binding Model.TagChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            
+            <!-- Login -->
+            <Border Margin="20" BorderThickness="0, 0, 1, 1" BorderBrush="DeepSkyBlue">
+            <ContentControl Margin="0, 0, 0, 0" Content="{Binding Path=FrameworkModel.LoginContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </Border>
+
+
+        </StackPanel>
+
+    </Grid>
+</Page>

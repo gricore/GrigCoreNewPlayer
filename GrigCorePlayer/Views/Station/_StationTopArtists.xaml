@@ -1,0 +1,21 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:CustomListBox="clr-namespace:GrigCorePlayer.Controls.CustomListBox"
+             xmlns:controllers="clr-namespace:GrigCorePlayer.Controllers"
+             x:Class="GrigCorePlayer.Views.Station._StationTopArtists" 
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type={x:Type controllers:StationController}}"      
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Right" Foreground="CornflowerBlue"
+                   FontWeight="SemiBold" Text="Genre Top Artists" Margin="5"/>
+        
+        <CustomListBox:TilesListBox
+            x:Name="TopArtistsListBox"
+            ItemsSources="{Binding Path=Model.Artists, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+    </StackPanel>
+</UserControl>

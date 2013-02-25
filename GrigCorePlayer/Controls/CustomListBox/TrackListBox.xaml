@@ -1,0 +1,98 @@
+﻿<UserControl Name="TrackListBoxUserControl" x:Class="GrigCorePlayer.Controls.CustomListBox.TrackListBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:customItems2="clr-namespace:GrigCorePlayer.Controls.CustomItems"
+             xmlns:controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+             xmlns:controls4="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+             xmlns:telerikControls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <Style x:Key="Itemstyle" TargetType="{x:Type ListViewItem}">
+            <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_OnMouseDown" />
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+
+        <StackPanel Orientation="Horizontal" Width="300" HorizontalAlignment="Right" Grid.Column="0" Margin="5">
+            <TextBlock Text="Enter search term " Foreground="DimGray" FontStyle="Italic" />
+            <Border BorderThickness="0.5" BorderBrush="DeepSkyBlue">
+                <TextBox Width="200" x:Name="textBoxFilterValue" />
+            </Border>
+
+        </StackPanel>
+        <Grid >
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <controls4:RadGridView Grid.Column="1"     
+                             telerikControls:StyleManager.Theme="Metro"       
+                            x:Name="radGridView"                                  							 
+							 ItemsSource="{Binding PagedSource, ElementName=RadDataPager1}"
+							 RowIndicatorVisibility="Collapsed"
+							 ColumnWidth="140"
+							 CanUserFreezeColumns="False"
+							 IsReadOnly="True"
+							 ShowGroupPanel="False"
+							 IsFilteringAllowed="False"
+                             MouseDoubleClick="ListBoxItem_OnMouseDown"
+                             SelectedItem="{Binding ElementName=TrackListBoxUserControl, Path=SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+							 AutoGenerateColumns="True">
+                    <controls4:RadGridView.ItemTemplate>
+                        <DataTemplate DataType="customItems2:TrackListBoxItem">
+                            <Grid MouseDown="ListBoxItem_OnMouseDown"/>
+                        </DataTemplate>
+                    </controls4:RadGridView.ItemTemplate>
+                </controls4:RadGridView>
+                <controls:RadDataPager Grid.Row="2"
+							  x:Name="RadDataPager1"
+                              telerikControls:StyleManager.Theme="Metro"
+							  PageSize="10"                            
+							  BorderThickness="1,0,1,1"
+							  DisplayMode="All"
+                              NumericButtonCount="10"
+							  Source="{Binding ElementName=TrackListBoxUserControl, Path=SourceCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+							  IsTotalItemCountFixed="True" />
+
+            </Grid>
+
+
+        </Grid>
+
+
+
+
+        <!--<ListView Grid.Row="1"   Background="{x:Null}"              
+                  ItemContainerStyle="{StaticResource Itemstyle}"
+                  SelectedItem="{Binding ElementName=TrackListBoxUserControl, Path=SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedValue="{Binding ElementName=TrackListBoxUserControl, Path=SelectedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedIndex="{Binding ElementName=TrackListBoxUserControl, Path=SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding ElementName=TrackListBoxUserControl,Path=SourceCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Index, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="#" Width="30"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Track, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Track" Width="250"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Artist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Artist"  Width="200"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Duration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Duration" Width="100"/>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="customItems2:TrackListBoxItem">
+                    <Grid MouseDown="ListBoxItem_OnMouseDown"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+
+
+
+    </StackPanel>
+</UserControl>

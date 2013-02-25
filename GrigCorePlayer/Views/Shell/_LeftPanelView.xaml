@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="GrigCorePlayer.Views.Shell._LeftPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:controllers="clr-namespace:GrigCorePlayer.Controllers"
+             mc:Ignorable="d" Background="White"
+             d:DataContext="{d:DesignInstance Type=controllers:ShellController}"
+             d:DesignHeight="300" Width="100">
+
+    <UserControl.Resources>
+        <Style TargetType="Border" x:Key="BorderButtonStyle">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Margin" Value="0, 5, 0, 5"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E0E0E0"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockButtonStyle">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="DimGray"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="TextDecorations" Value="Underline"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
+    </UserControl.Resources>
+
+
+    <Border BorderThickness="0, 0, 1, 1" BorderBrush="DeepSkyBlue">
+        <StackPanel>
+            <Grid Margin="5"/>
+            <Border Style="{StaticResource BorderButtonStyle}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <i:InvokeCommandAction Command="{Binding NavigateToHomeCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBlock Text="Home" Style="{StaticResource TextBlockButtonStyle}"/>
+            </Border>
+
+            <Border Style="{StaticResource BorderButtonStyle}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <i:InvokeCommandAction Command="{Binding NavigateToUserCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBlock Text="User" Style="{StaticResource TextBlockButtonStyle}"/>
+            </Border>
+
+            <Border Style="{StaticResource BorderButtonStyle}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <i:InvokeCommandAction Command="{Binding NavigateToArtistCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBlock Text="Artist" Style="{StaticResource TextBlockButtonStyle}"/>
+            </Border>
+
+            <Border Style="{StaticResource BorderButtonStyle}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <i:InvokeCommandAction Command="{Binding NavigateToNowPlayingCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBlock Text="Playing" Style="{StaticResource TextBlockButtonStyle}"/>
+            </Border>
+
+            <Border Style="{StaticResource BorderButtonStyle}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <i:InvokeCommandAction Command="{Binding NavigateToStationCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBlock Text="Station" Style="{StaticResource TextBlockButtonStyle}"/>
+            </Border>
+
+
+        </StackPanel>
+    </Border>
+</UserControl>
